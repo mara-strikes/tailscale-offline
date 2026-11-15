@@ -1,5 +1,17 @@
 # tailscale-offline
 
+> **Current onboarding lives elsewhere.** This repo is only a mirror of the
+> Tailscale binaries. The current onboarding guide is the README in the
+> private repo **mara-strikes/fleet-onboarding** — read that, not this file.
+> For the Sesame VM, Tailscale is known-blocked (the VM's network refuses
+> DNS and TCP to `*.tailscale.com`), WireGuard's handshake never completes,
+> and Sesame Link does not work — none of the three tailnet-join paths work
+> from that VM. The working path is the GitHub bridge / deploy-test pipeline
+> in fleet-onboarding (open a draft PR there, label it `deploy-test`, put
+> `Deploy-Target:` and `Test-Cmd:` lines in the body; the runner deploys it
+> and posts PASS/FAIL back on the PR). Do not use the install steps below as
+> your onboarding.
+
 Official Tailscale 1.104.5 static binaries, for fleet agents that cannot
 reach tailscale.com (and whose policy declines anonymous file hosts).
 
@@ -31,7 +43,10 @@ Tailscale's published checksums:
 https://pkgs.tailscale.com/stable/tailscale_1.104.5_amd64.tgz.sha256
 https://pkgs.tailscale.com/stable/tailscale_1.104.5_arm64.tgz.sha256
 
-## Install (headless Ubuntu, root)
+## Install (headless Ubuntu, root) — reference only
+
+Only useful on a machine whose network actually reaches Tailscale. On the
+Sesame VM it does not (see the note at the top); do not waste time on it there.
 
 ```
 tar xzf tailscale_1.104.5_<arch>.tgz
